@@ -46,43 +46,28 @@
     </section>
 
     <!-- Modale de création de compte -->
-    <div
-      v-if="showModal"
-      class="fixed inset-0 bg-black bg-opacity-40 flex items-center justify-center z-50"
-    >
-      <div class="bg-white rounded-2xl p-8 shadow-lg w-full max-w-md relative">
-        <button
-          class="absolute top-3 right-3 text-gray-400 hover:text-gray-700 text-2xl"
-          @click="showModal = false"
-          aria-label="Fermer"
+    <teleport to="body">
+      <transition name="fade">
+        <div
+          v-if="showModal"
+          class="fixed inset-0 bg-black/50 flex items-center justify-center z-50"
+          @click.self="closeContactModal"
         >
-          &times;
-        </button>
-        <h2 class="text-2xl font-bold mb-4">Créer un compte</h2>
-        <form @submit.prevent="handleSignup">
-          <input
-            v-model="email"
-            type="email"
-            placeholder="Adresse e-mail"
-            class="w-full mb-3 px-4 py-2 border rounded"
-            required
-          />
-          <input
-            v-model="password"
-            type="password"
-            placeholder="Mot de passe"
-            class="w-full mb-4 px-4 py-2 border rounded"
-            required
-          />
-          <button
-            type="submit"
-            class="bg-[#545D98] text-white px-6 py-2 rounded-full font-semibold shadow hover:bg-[#454c7f] transition w-full"
+          <div
+            class="bg-white rounded-lg shadow-lg p-6 w-full max-w-2xl"
+            style="top: 50%; left: 50%; transform: translate(-50%, -50%); position: fixed"
           >
-            S’inscrire
-          </button>
-        </form>
-      </div>
-    </div>
+            <button
+              @click="closeContactModal"
+              class="absolute top-2 right-2 text-gray-500 hover:text-gray-700"
+            >
+              &times;
+            </button>
+            <AccountCreate />
+          </div>
+        </div>
+      </transition>
+    </teleport>
 
     <!-- Footer -->
     <footer class="text-center text-sm text-gray-500 pb-6">
@@ -93,14 +78,13 @@
 
 <script setup>
 import { ref } from 'vue'
+import AccountCreate from '@/components/AccountCreate.vue'
 
 const showModal = ref(false)
 const email = ref('')
 const password = ref('')
 
-function handleSignup() {
-  // Ici tu ajoutes la logique d'inscription (API, etc.)
-  alert(`Compte créé pour ${email.value} !`)
+function closeContactModal() {
   showModal.value = false
 }
 </script>
