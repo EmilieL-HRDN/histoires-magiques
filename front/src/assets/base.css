@@ -1,0 +1,54 @@
+@import "tailwindcss";
+@import "@nuxt/ui";
+
+@theme {
+  --color-primary-100: #0D1D36;
+  --color-secondary-100: #4F1787;
+  --color-accent-100: #EB3678;
+  --color-text: #091323;
+  --color-background: #f5f6f7;
+
+  --container-width: 1200px;
+}
+
+:root {
+  --ui-primary: var(--color-primary-100);
+  --ui-secondary: var(--color-secondary-100);
+  --ui-accent: var(--color-accent-100);
+  --ui-error:var(--color-accent-100);
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  font-weight: normal;
+}
+
+body {
+  min-height: 100vh;
+  color: var(--color-text);
+  background: var(--color-background);
+  transition:
+    color 0.5s,
+    background-color 0.5s;
+  line-height: 1.6;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    'Fira Sans',
+    'Droid Sans',
+    'Helvetica Neue',
+    sans-serif;
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
